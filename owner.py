@@ -16,10 +16,10 @@ class Owner(db.Model):
     idowner= db.Column(db.Integer, primary_key=True)
     o_nombre= db.Column(db.String(300), nullable=False)
     o_apelldo= db.Column(db.String(300), nullable=False)
-    iddepto= db.Column(db.Integer, db.ForeignKey('Depto.iddepto'), nullable=False)
+    iddepto= db.Column(db.Integer, db.ForeignKey('depto.iddepto'), nullable=False)
 
     # RELACIONA CON EL DEPARTAMENTO
-    Depto= db.relationship('Depto', back_populates='owners')
+    depto= db.relationship('Depto', backref='owners', lazy=True)
 
 with app.app_context():
     db.create_all()

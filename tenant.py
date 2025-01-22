@@ -16,10 +16,11 @@ class Tenant(db.Model):
     idtenant= db.Column(db.Integer, primary_key=True)
     t_nombre= db.Column(db.String(300), nullable=False)
     t_apellido= db.Column(db.String(300), nullable=False)
-    iddepto= db.Column(db.Integer, db.ForeignKey('Depto.iddepto'), nullable=False)
+    iddepto= db.Column(db.Integer, db.ForeignKey('depto.iddepto'), nullable=False)
+    
 
     # RELACIONA CON EL DEPARTAMENTO
-    Depto= db.relationship('Depto', back_populates='tenants')
+    depto= db.relationship('Depto', backref='tenants', lazy=True)
 
 with app.app_context():
     db.create_all()
